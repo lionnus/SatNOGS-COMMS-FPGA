@@ -49,7 +49,7 @@ module ccsds_scrambler
             state_q      <= state_q;
             count_q      <= count_d;
             cycle_counter <= cycle_counter + 1;
-        else begin
+        end else begin
             cycle_counter = 0;
             // Operates on blocks of 255 bits, reset the state with 'all ones' -> unclear if this is correct or if it should be all 0
             if (count_q < 255) begin 
@@ -61,8 +61,5 @@ module ccsds_scrambler
                 cycle_counter <= cycle_counter + 1;
             end
         end 
-            end
-        end
-
-
+    end
 endmodule
