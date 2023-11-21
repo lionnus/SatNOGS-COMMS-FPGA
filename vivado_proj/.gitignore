@@ -1,0 +1,15 @@
+# Vivado generated files and binaries
+*.jou
+*.log
+*.str
+*.backup*
+*.bit
+*.bin
+*.rpt
+*.dcp
+*.btree
+.ip_user_files/
+.sim/
+.synth/
+.hw/
+

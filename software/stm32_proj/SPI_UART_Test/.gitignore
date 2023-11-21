@@ -1,0 +1,9 @@
+# STM32CubeIDE artifacts
+.metadata/
+Debug/
+Release/
+
+# Compiled Binaries
+*.elf
+*.bin
+*.hex
