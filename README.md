@@ -19,7 +19,7 @@ The ARIS SAGE\[3\] CubeSat team is developing a 3U CubeSat to demonstrate a micr
 - `ip_repo/`: Houses custom IPs used in the FPGA project.
   - `CCSDS_tx_ip_1.0/`: An IP for transmitting CCSDS data packets.
     - `hdl/`: Contains the RTL (Register Transfer Level) design of the IP and its modules.
-      - `modules/`: Consists of smaller individual hardware modules.
+      - `modules/`: Consists of smaller individual modules.
       - `tb/`: Testbenches for the RTL design.
         - `modules_tb/`: Unit testbenches for individual modules.
         - `top_tb/`: Integration testbenches for the complete IP.
@@ -45,14 +45,14 @@ FPGA Component:
 ### Prerequisites:
 
 -   Software: Xilinx Vivado 2020.2
--   Hardware: PYNQ-Z2 Development board and STM32 (see STM32 part)
+-   Hardware: PYNQ-Z2 Development board or SatNOGS COMMS board with Digilent HS2 programmer(or equivalent)
 
 ### Setup:
 
 1.  Clone the Repository:
 
-    `git clone https://github.com/lionnus/SatNOGS-COMMS-FPGA-Implementation
-    cd https://github.com/lionnus/SatNOGS-COMMS-FPGA-Implementation`
+    `git clone https://github.com/lionnus/SatNOGS-COMMS-FPGA
+    cd https://github.com/lionnus/SatNOGS-COMMS-FPGA`
 
 2.  Create the FPGA Project: Navigate to the `vivado_proj/scripts` directory and run the Tcl script to set up the Vivado project.
 
@@ -68,7 +68,7 @@ FPGA Component:
     -   In the Vivado IDE, click on Generate Bitstream. This will synthesize, implement, and finally generate the FPGA bitstream.
 5.  Testing:
 
-    -   Load the generated bitstream onto your FPGA.
+    -   Load the generated bitstream onto the Pynq-Z2 development board or the ALINX XC7Z020 FPGA module on the SatNOGS(e.g. using the Digilent HS2).
     -   Set up the STM32 (see below).
 6.  Documentation: For more details on the FPGA flow and architecture, refer to the docs of the repository and the SatNOGS COMMS repositories.
 
@@ -79,11 +79,11 @@ STM32 Component:
 
 ### Prerequisites:
 
--   Software: STM32CubeIDE
--   Hardware: STM32H723 Development board
+-   Software: STM32CubeIDE for development, or STMCubeProgrammer for SatNOGS
+-   Hardware: STM32H723 Development board or SatNOGS COMMS board
 
 ### Setup:
-
+For the development board:
 1.  Import the STM32 Project:
 
     -   Open STM32CubeIDE.
@@ -96,6 +96,8 @@ STM32 Component:
 3.  Open a UART connection, e.g. on Ubuntu:
     `screen /dev/ttyACM0 115200`
 4. Follow printed instructions in the terminal
+
+Instructions for the SatNOGS COMMS board will follow later.
 
 ## References
 
