@@ -79,11 +79,11 @@ STM32 Component:
 
 ### Prerequisites:
 
--   Software: STM32CubeIDE for development, or STMCubeProgrammer for SatNOGS
+-   Software: STM32CubeIDE for development, or STM32CubeProgrammer for SatNOGS
 -   Hardware: STM32H723 Development board or SatNOGS COMMS board
 
 ### Setup:
-For the development board:
+#### For the development board:
 1.  Import the STM32 Project:
 
     -   Open STM32CubeIDE.
@@ -97,7 +97,7 @@ For the development board:
     `screen /dev/ttyACM0 115200`
 4. Follow printed instructions in the terminal
 
-Instructions for the SatNOGS COMMS board will follow later.
+#### Instructions for the SatNOGS COMMS board will follow later.
 
 ## References
 
