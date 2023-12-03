@@ -7,8 +7,8 @@
 *
 * License: This file is licensed under the GNU GPL version 3.
 *
-* Part of a semester project at ETH Zurich and Akademische Raumfahrt Initiative Schweiz (ARIS)
 */
+
 `timescale 1 ns / 1 ps
 
 module CCSDS_tx_ip_v1_0_M00_AXI #

@@ -1,3 +1,14 @@
+/*
+ * File: CCSDS_tx_ip_v1_0_M00_AXIS.v
+ * Author: Lionnus Kesting
+ * Date: November 22th, 2023
+ *
+ * Description: AXI Stream interface for the CCSDS transmitter IP.
+ *
+ * License: This file is licensed under the GNU GPL version 3.
+ *
+ */
+ 
 `timescale 1 ns / 1 ps
 
 module CCSDS_tx_ip_v1_0_M00_AXIS #
@@ -5,10 +16,11 @@ module CCSDS_tx_ip_v1_0_M00_AXIS #
 	parameter integer C_M_AXIS_TDATA_WIDTH	= 32,
 	parameter integer FIFO_DEPTH = 16  // Parameterized FIFO depth
 )
-(
+(   // Data input
 	input wire [12:0] i_data_i, // In phase component
     input wire [12:0] q_data_i, // Quadrature phase component
 	input wire valid_i, // Valid signal for IQ components
+	// AXI4-Stream wires
 	input wire  M_AXIS_ACLK,
 	input wire  M_AXIS_ARESETN,
 	output wire  M_AXIS_TVALID,
@@ -18,18 +30,17 @@ module CCSDS_tx_ip_v1_0_M00_AXIS #
 	input wire  M_AXIS_TREADY
 );
 
-localparam WR_PTR_WIDTH = $clog2(FIFO_DEPTH);
-localparam RD_PTR_WIDTH = $clog2(FIFO_DEPTH);
+localparam PTR_WIDTH = $clog2(FIFO_DEPTH);
 
 reg [12:0] fifo_mem [0:FIFO_DEPTH-1]; // FIFO memory
-reg [WR_PTR_WIDTH-1:0] wr_ptr = 0; // Write pointer
-reg [RD_PTR_WIDTH-1:0] rd_ptr = 0; // Read pointer
+reg [PTR_WIDTH-1:0] wr_ptr = 0; // Write pointer
+reg [PTR_WIDTH-1:0] rd_ptr = 0; // Read pointer
 reg [C_M_AXIS_TDATA_WIDTH-1 : 0] stream_data_out = 0;
 reg tx_done = 0;
 wire tx_en;
 
 // Reset and Write Pointer Logic
-always @(posedge M_AXIS_ACLK or negedge M_AXIS_ARESETN)
+always @(posedge M_AXIS_ACLK)
 begin
   if(!M_AXIS_ARESETN)
   begin

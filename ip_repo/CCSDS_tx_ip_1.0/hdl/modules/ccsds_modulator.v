@@ -1,5 +1,5 @@
 /*
- * File: bpsk_modulator.sv
+ * File: ccsds_modulator.sv
  * Author: Lionnus Kesting
  * Date: July 5th, 2023
  *
@@ -10,9 +10,10 @@
  * Part of a semester project at ETH Zurich and Akademische Raumfahrt Initiative Schweiz (ARIS)
  */
  
-module bpsk_modulator # (
+module ccsds_modulator # (
     parameter CLK_FREQ = 64, // Clock frequency (MHz)
-    parameter SAMPLE_RATE = 1 // Sample rate as given for AT86RF215
+    parameter SAMPLE_RATE = 1, // Sample rate as given for AT86RF215
+    parameter MOD_TYPE = 0 // BPSK = 0
     )(
     input wire clk_i,
     input wire rst_ni,
