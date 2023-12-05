@@ -4,7 +4,7 @@ if {[version -short] ne "2020.2"} {
 }
 
 # Name of project
-set project_name CCSDS_tx_chain
+set project_name SatNOGS_COMMS_PYNQ
 
 # Create new project.
 create_project $project_name . -part xc7z020clg400-1

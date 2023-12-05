@@ -8,6 +8,7 @@
 *.rpt
 *.dcp
 *.btree
+*.xpr
 .ip_user_files/
 .sim/
 .synth/
