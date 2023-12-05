@@ -18,7 +18,7 @@ module CCSDS_tx_ip_v1_0_M00_AXIS #
 )
 (   // Data input
 	input wire [12:0] i_data_i, // In phase component
-    input wire [12:0] q_data_i, // Quadrature phase component
+  input wire [12:0] q_data_i, // Quadrature phase component
 	input wire valid_i, // Valid signal for IQ components
 	// AXI4-Stream wires
 	input wire  M_AXIS_ACLK,
@@ -45,9 +45,6 @@ begin
   if(!M_AXIS_ARESETN)
   begin
     wr_ptr <= 0;
-    rd_ptr <= 0;
-    stream_data_out <= 0;
-    tx_done <= 0;
   end
   else if(valid_i && wr_ptr != FIFO_DEPTH-1)
   begin
@@ -60,7 +57,12 @@ end
 always @(posedge M_AXIS_ACLK)
 begin
   if(!M_AXIS_ARESETN || wr_ptr == rd_ptr) // Reset or FIFO empty
-    tx_done <= 1'b0;
+  begin
+    tx_done <= 0;
+    rd_ptr <= 0;
+    stream_data_out <= 0;
+    tx_done <= 0;
+  end
   else if (tx_en && wr_ptr != rd_ptr) // Read from FIFO when tx_en is high and FIFO is not empty 
   begin
     stream_data_out <= fifo_mem[rd_ptr]; // Read from FIFO
