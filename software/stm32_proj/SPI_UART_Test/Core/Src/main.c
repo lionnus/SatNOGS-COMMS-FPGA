@@ -184,7 +184,7 @@ int main(void)
 			}
 			printf("\n");
 
-	  	  	 // TO DO: Only send data if FPGA has ready signal asserted
+	  	  	 // TODO: Only send data if FPGA has ready signal asserted
 
 	  	  	 // Clear the input buffer
 	  	  	 for (size_t i = 0; i < sizeof(inputBuffer); i++)

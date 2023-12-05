@@ -1,9 +1,16 @@
 # STM32CubeIDE artifacts
 .metadata/
-Debug/
-Release/
+debug/
+release/
+.vscode/
+cmake/
 
 # Compiled Binaries
 *.elf
 *.bin
 *.hex
+
+# Config
+*.json
+.mxproject
+CMakeLists.txt
