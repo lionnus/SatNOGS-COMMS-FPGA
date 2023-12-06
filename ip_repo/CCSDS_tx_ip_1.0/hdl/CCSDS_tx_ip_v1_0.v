@@ -45,9 +45,10 @@
 		parameter integer C_M00_AXIS_TDATA_WIDTH	= 16,
 		parameter integer C_M00_AXIS_START_COUNT	= 32
 	)(
+		// General inputs
+		input wire clk_i,
+		input wire rst_ni,
 		// Ports of Axi Master Bus Interface M00_AXI
-		input wire  m00_axi_aclk,
-		input wire  m00_axi_aresetn,
 		output wire [31: 0] m00_axi_awaddr,
 		output wire [2 : 0] m00_axi_awprot,
 		output wire  m00_axi_awvalid,
@@ -69,8 +70,6 @@
 		output wire  m00_axi_rready,
 
 		// Ports of Axi Master Bus Interface M00_AXIS
-		input wire  m00_axis_aclk,
-		input wire  m00_axis_aresetn,
 		output wire  m00_axis_tvalid,
 		output wire [C_M00_AXIS_TDATA_WIDTH-1 : 0] m00_axis_tdata,
 		output wire [(C_M00_AXIS_TDATA_WIDTH/8)-1 : 0] m00_axis_tstrb,
@@ -93,6 +92,8 @@
 	wire [3:0] debug_i;
 	wire ccsds_read_in;
 	wire count_debug;
+	assign m00_axi_aclk = clk_i;
+	assign m00_axi_aresetn = rstn_ni;
 
 	// Wires for I data interface and serializer
 	wire valid_i;
@@ -115,6 +116,8 @@
 	wire [15:0] i_data_stream;
 	wire valid_i_stream;
 	wire [15:0] q_data_stream;
+	assign m00_axis_aclk = clk_i;
+	assign m00_axis_aresetn = rstn_ni;
 
 	
 // Instantiation of Axi Bus Interface M00_AXI
