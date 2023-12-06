@@ -149,7 +149,7 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   // Print welcome message
-  printf("\n\n----------\n\nSMT32 and Zynq-7020 Communication over SPI\n\n");
+  printf("\n\n----------\n\nSMT32 and Zynq-7020 Communication over SPI\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -162,7 +162,7 @@ int main(void)
 	  		 printf("Enter data to send over SPI: ");
 	  		 // TO DO: Specify scanf or file input
 	  		 scanf("%s",inputBuffer);
-	  		 printf("You entered %s\n", inputBuffer);
+	  		 printf("You entered %s\r\n", inputBuffer);
 
 	  	  	 // Convert the ASCII characters to uint8 for SPI
 	  		size_t inputLen = 0;
@@ -170,19 +170,19 @@ int main(void)
 	  	  	{
 	  	  		spiDataTx[inputLen] = (uint8_t)inputBuffer[inputLen];
 	  	  	}
-	  	  	printf("yes");
+	  	  	printf("yes\r\n");
 	  	  	 // Send data over SPI
 	  	    HAL_StatusTypeDef halStatus;
 	  	  	halStatus = HAL_SPI_Transmit(&hspi1, spiDataTx, inputLen, HAL_MAX_DELAY);
 
-	  	  	if(halStatus == HAL_OK) printf("HAL OK, successfully send data.\n");
-	  	  	else printf("HAL not OK, unsuccessfully send data.");
+	  	  	if(halStatus == HAL_OK) printf("HAL OK, successfully send data.\r\n");
+	  	  	else printf("HAL not OK, unsuccessfully send data.\r\n");
 
 	  	  	 printf("Data that was send as unit8:");
 			for (size_t i = 0; inputBuffer[i]!='\0';i++) {
 				printf("%d, %d ",i, spiDataTx[i]);
 			}
-			printf("\n");
+			printf("\r\n");
 
 	  	  	 // TODO: Only send data if FPGA has ready signal asserted
 
@@ -328,7 +328,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.NSS = SPI_NSS_HARD_OUTPUT;
   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
